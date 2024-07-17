@@ -1,8 +1,9 @@
 import React, { FC } from "react";
-import { Container } from "./AllocationBlock.style";
+import { BlockContainer } from "src/app/page.style";
+// import { Container } from "./AllocationBlock.style";
 
 const AllocationBlock: FC = () => {
-  return <Container>AllocationBlock</Container>;
+  return <BlockContainer>AllocationBlock</BlockContainer>;
 };
 
 export default AllocationBlock;
