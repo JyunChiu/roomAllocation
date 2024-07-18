@@ -14,6 +14,10 @@ export const StyledTextField = styled(TextField)<TextFieldProps>(
     },
     "& .MuiInputBase-input": {
       paddingRight: theme.spacing(0.5),
+      "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+        "-webkit-appearance": "none",
+        margin: 0,
+      },
     },
   })
 );

@@ -16,7 +16,7 @@ const IconButton: FC<StyledIconButtonProps> = (props) => {
     children,
     tooltip,
     $iconSize = "MD",
-    $iconColor = "MAIN",
+    $iconColor = "BLUE_2",
     onClick,
     disabled,
     ...restProps

@@ -65,8 +65,7 @@ const CustomizedTextField: FC<Props> = ({
   }, [value, labelFixed, isFocused]);
 
   const handleChange = (e: TOnChange): void => {
-    const val = e.target.value;
-    console.log("???", typeof val);
+    const val = type === "number" ? parseInt(e.target.value) : e.target.value;
     onChange(name, val);
   };
 
@@ -95,15 +94,15 @@ const CustomizedTextField: FC<Props> = ({
   }, [type, showPassword]);
 
   const fieldType = useMemo(() => {
-    if (type !== "password") return "text";
+    if (type !== "password") return type;
     return showPassword ? "text" : "password";
   }, [type, showPassword]);
 
   // show * when this field type is password and no value in edit mode
   const displayValue = useMemo(() => {
-    if (editMode && value === "" && type === "password") {
+    if (type === "password" && editMode && value === "")
       return showPassword ? value : EMPTY_PASSWORD;
-    }
+    if (type === "number") return parseInt(value.toString());
     return value;
   }, [value, type, showPassword, editMode]);
 

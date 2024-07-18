@@ -1,7 +1,15 @@
-import React, { FC, memo, useState, ReactNode, ReactElement, MouseEvent, useEffect } from 'react';
-import { PopoverOrigin } from '@mui/material';
-import { IconButton, Button } from 'components/Buttons';
-import { StyledPopover } from './PopoverButton.style';
+import React, {
+  FC,
+  memo,
+  useState,
+  ReactNode,
+  ReactElement,
+  MouseEvent,
+  useEffect,
+} from "react";
+import { PopoverOrigin } from "@mui/material";
+import { IconButton, Button } from "components/Buttons";
+import { StyledPopover } from "./PopoverButton.style";
 
 interface Props {
   open: boolean;
@@ -12,6 +20,8 @@ interface Props {
     icon?: ReactElement;
     tooltip?: string;
     text?: string;
+    small?: boolean;
+    round?: boolean;
   };
   anchorOrigin?: PopoverOrigin;
   transformOrigin?: PopoverOrigin;
@@ -26,7 +36,10 @@ const PopoverButton: FC<Props> = ({
   disabled,
   button: { icon, tooltip, text, ...restBtnProps } = {},
   anchorOrigin: { vertical: anchorVertical, horizontal: anchorHorizontal } = {},
-  transformOrigin: { vertical: transformVertical, horizontal: transformHorizontal } = {},
+  transformOrigin: {
+    vertical: transformVertical,
+    horizontal: transformHorizontal,
+  } = {},
   children,
   className,
 }) => {
@@ -41,7 +54,7 @@ const PopoverButton: FC<Props> = ({
     onClick();
   };
 
-  const id = open ? 'cwa-popover' : undefined;
+  const id = open ? "cwa-popover" : undefined;
   const AnchorButton = icon ? IconButton : Button;
 
   return (
@@ -62,12 +75,12 @@ const PopoverButton: FC<Props> = ({
         anchorEl={anchorEl}
         onClose={onClose}
         anchorOrigin={{
-          vertical: anchorVertical ?? 'bottom',
-          horizontal: anchorHorizontal ?? 'left',
+          vertical: anchorVertical ?? "bottom",
+          horizontal: anchorHorizontal ?? "left",
         }}
         transformOrigin={{
-          vertical: transformVertical ?? 'top',
-          horizontal: transformHorizontal ?? 'left',
+          vertical: transformVertical ?? "top",
+          horizontal: transformHorizontal ?? "left",
         }}
       >
         {children}

@@ -47,8 +47,8 @@ const ButtonElement: FC<ButtonElementProps> = ({
       })}
       onClick={onClick}
       startIcon={startIcon}
-      background={COLOR.WHITE}
-      font={COLOR.BLACK}
+      background={COLOR.BLUE_2}
+      font={COLOR.WHITE}
       {...restProps}
     >
       {loading ? (
