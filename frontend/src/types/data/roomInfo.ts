@@ -8,7 +8,7 @@ interface RoomInfo {
 interface Result {
   adult: number;
   child: number;
-  price: number;
+  price?: number;
 }
 
 export type { RoomInfo, Result };

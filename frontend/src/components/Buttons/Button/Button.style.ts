@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { BORDER_RADIUS } from "src/stylesheet";
+import { Opacity } from "@mui/icons-material";
 
 interface Props {
   background: string;
@@ -17,6 +18,9 @@ export const StyledButton = styled(Button)<Props>(
     border: `1px solid ${background}`,
     padding: "6px 14px",
     borderRadius: "0.375rem",
+    "&.disabled": {
+      opacity: 0.3,
+    },
     "&.small": {
       padding: "2px 14px",
       fontSize: "14px",

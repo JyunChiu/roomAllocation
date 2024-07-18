@@ -26,8 +26,13 @@ const AllocationBlock: FC = () => {
   );
 
   const handleResultChange = useCallback(
-    (index: number, updatedResult: Result) => {},
-    []
+    (index: number, updatedRoom: Result) => {
+      const updatedResult = [...result];
+      result.splice(index, 1, updatedRoom);
+      setResult(updatedResult);
+      console.log("result :::::", updatedResult);
+    },
+    [result, setResult]
   );
 
   return (
@@ -55,7 +60,9 @@ const AllocationBlock: FC = () => {
         {result.map((item, i) => (
           <RoomAllocation
             key={`room-card${i + 1}`}
+            roomNo={i + 1}
             roomInfo={item}
+            unassigned={unassigned}
             onChange={(updatedResult) => handleResultChange(i, updatedResult)}
           />
         ))}

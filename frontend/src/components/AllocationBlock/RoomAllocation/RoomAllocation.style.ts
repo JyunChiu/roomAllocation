@@ -36,6 +36,7 @@ export const RoomCard = styled.div`
     gap: 1.5rem;
     .guest-box {
       display: flex;
+      justify-content: space-between;
       .title-zone {
         display: flex;
         flex-direction: column;

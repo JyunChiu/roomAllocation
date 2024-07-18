@@ -44,6 +44,7 @@ const ButtonElement: FC<ButtonElementProps> = ({
         small,
         round,
         noTextTransform,
+        disabled,
       })}
       onClick={onClick}
       startIcon={startIcon}
