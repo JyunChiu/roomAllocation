@@ -8,7 +8,11 @@ import { Container } from "./page.style";
 
 const Home: FC = () => {
   const [guest, setGuest] = useState<GuestInfo>({ adult: 0, children: 0 });
-  const [rooms, setRooms] = useState<RoomInfo[]>([]);
+  const [rooms, setRooms] = useState<RoomInfo[]>([
+    { roomPrice: 1000, adultPrice: 200, childPrice: 100, capacity: 4 },
+    { roomPrice: 0, adultPrice: 500, childPrice: 500, capacity: 4 },
+    { roomPrice: 500, adultPrice: 300, childPrice: 200, capacity: 4 },
+  ]);
   const contextValue = useMemo(
     () => ({
       guest,

@@ -1,3 +1,4 @@
-import { Sizes, Colors } from "./common";
+import { Sizes, Colors, FieldLabel } from "./common";
 
+export { FieldLabel };
 export type { Sizes, Colors };
