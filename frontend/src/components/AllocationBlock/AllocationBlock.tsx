@@ -1,9 +1,9 @@
-import React, { FC, useContext, useState, useMemo } from "react";
-import PersonIcon from "@mui/icons-material/Person";
+import React, { FC, useContext, useState, useMemo, useCallback } from "react";
 import { AppContext } from "src/contexts";
 import { FieldLabel } from "types/common";
 import { Result } from "types/data";
-import { Container, RoomCard } from "./AllocationBlock.style";
+import RoomAllocation from "./RoomAllocation";
+import { Container } from "./AllocationBlock.style";
 
 const AllocationBlock: FC = () => {
   const { guest, rooms } = useContext(AppContext);
@@ -23,6 +23,11 @@ const AllocationBlock: FC = () => {
         { adult: guest.adult, child: guest.child }
       ),
     [result, guest]
+  );
+
+  const handleResultChange = useCallback(
+    (index: number, updatedResult: Result) => {},
+    []
   );
 
   return (
@@ -48,33 +53,11 @@ const AllocationBlock: FC = () => {
       </div>
       <div className="rooms-box">
         {result.map((item, i) => (
-          <RoomCard key={`room-card${i + 1}`}>
-            <div className="room-title">
-              <span className="label">{FieldLabel.room}</span>
-              <span>:</span>
-              <div className="icon-box">
-                <PersonIcon />
-              </div>
-              <span className="number-of-guest">
-                x {item.adult + item.child}
-              </span>
-            </div>
-            <div className="guests-info-box">
-              <div className="guest-box">
-                <div className="title-zone">
-                  <span className="title">{FieldLabel.adult}</span>
-                  <span className="sub-title">Age 20+</span>
-                </div>
-                <div className="input-zone"></div>
-              </div>
-              <div className="guest-box">
-                <div className="title-zone">
-                  <span className="title">{FieldLabel.child}</span>
-                </div>
-                <div className="input-zone"></div>
-              </div>
-            </div>
-          </RoomCard>
+          <RoomAllocation
+            key={`room-card${i + 1}`}
+            roomInfo={item}
+            onChange={(updatedResult) => handleResultChange(i, updatedResult)}
+          />
         ))}
       </div>
     </Container>
