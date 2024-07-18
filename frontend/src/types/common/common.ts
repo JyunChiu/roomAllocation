@@ -6,6 +6,8 @@ enum FieldLabel {
   childPrice = "Child Price",
   capacity = "Capacity",
   room = "Room",
+  totalPrice = "Total Price",
+  price = "Price",
 }
 interface Sizes {
   XL?: string;

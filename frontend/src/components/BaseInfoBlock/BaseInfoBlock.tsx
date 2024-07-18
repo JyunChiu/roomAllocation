@@ -18,7 +18,6 @@ const BaseInfoBlock: FC = () => {
 
   const handleConfigChange = useCallback(
     (name: string, val: string | number) => {
-      console.log(typeof val, val);
       setGuest((prev) => ({ ...prev, [name]: val }));
     },
     [setGuest]

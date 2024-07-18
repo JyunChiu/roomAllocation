@@ -6,14 +6,25 @@ export const Container = styled(BlockContainer)`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  .sub-title {
+    color: ${COLOR.GRAY_2};
+    font-size: ${FONT_SIZE.SM};
+  }
   .title-box {
     .label {
       font-size: ${FONT_SIZE.LG};
+      color: ${COLOR.BLACK};
     }
     .value {
       font-weight: 600;
       color: ${COLOR.BLUE_1};
       font-size: ${FONT_SIZE.XL};
+    }
+    .sub-title {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      gap: 0.5rem;
     }
   }
   .unassigned-box {

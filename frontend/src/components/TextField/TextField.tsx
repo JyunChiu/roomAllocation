@@ -56,6 +56,12 @@ const CustomizedTextField: FC<Props> = ({
 
   const handleBlur = (): void => {
     setIsFocus(false);
+    if (type === "number") {
+      const resetValue = value || 0;
+      onBlur(name, resetValue);
+      onChange(name, resetValue);
+      return;
+    }
     onBlur(name, value);
   };
 

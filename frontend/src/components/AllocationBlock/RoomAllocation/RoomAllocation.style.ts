@@ -29,6 +29,9 @@ export const RoomCard = styled.div`
     .number-of-guest {
       align-self: flex-end;
     }
+    .sub-title {
+      margin-left: auto;
+    }
   }
   .guests-info-box {
     display: flex;
@@ -43,10 +46,6 @@ export const RoomCard = styled.div`
         gap: 0.2rem;
         font-weight: 600;
         .title {
-        }
-        .sub-title {
-          color: ${COLOR.GRAY_2};
-          font-size: ${FONT_SIZE.SM};
         }
       }
       .input-zone {

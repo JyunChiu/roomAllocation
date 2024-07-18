@@ -13,6 +13,11 @@ const AllocationBlock: FC = () => {
     { adult: 4, child: 0, price: 0 },
   ]);
 
+  const totalPrice = useMemo(
+    () => result.reduce((acc, val) => acc + val.price, 0),
+    [result]
+  );
+
   const unassigned = useMemo(
     () =>
       result.reduce(
@@ -27,10 +32,13 @@ const AllocationBlock: FC = () => {
 
   const handleResultChange = useCallback(
     (index: number, updatedRoom: Result) => {
+      console.group("index :::::", index);
+      console.group("updatedRoom :::::", updatedRoom);
       const updatedResult = [...result];
-      result.splice(index, 1, updatedRoom);
+      updatedResult.splice(index, 1, updatedRoom);
       setResult(updatedResult);
       console.log("result :::::", updatedResult);
+      console.groupEnd();
     },
     [result, setResult]
   );
@@ -47,6 +55,10 @@ const AllocationBlock: FC = () => {
         <span>/</span>
         <span className="value">{rooms.length || 0}</span>
         <span className="label">{FieldLabel.room}</span>
+        <span className="sub-title">
+          <span className="label">{FieldLabel.totalPrice}:</span>
+          <span className="value">{totalPrice || 0}</span>
+        </span>
       </div>
       <div className="unassigned-box">
         <span>Unassigned Personnel Count：</span>
@@ -61,7 +73,8 @@ const AllocationBlock: FC = () => {
           <RoomAllocation
             key={`room-card${i + 1}`}
             roomNo={i + 1}
-            roomInfo={item}
+            data={item}
+            roomInfo={rooms[i]}
             unassigned={unassigned}
             onChange={(updatedResult) => handleResultChange(i, updatedResult)}
           />

@@ -20,12 +20,12 @@ const defaultRoomInfo = {
 
 const AddButton: FC<Props> = ({ onConfirm }) => {
   const [open, setOpen] = useState<boolean>(false);
-  const [roomInfo, setRoomInfo] = useState<RoomInfo>(defaultRoomInfo);
+  const [roomItem, setRoomInfo] = useState<RoomInfo>(defaultRoomInfo);
 
   const handleConfirm = useCallback(() => {
     setOpen(false);
-    onConfirm(roomInfo);
-  }, [roomInfo, onConfirm]);
+    onConfirm(roomItem);
+  }, [roomItem, onConfirm]);
 
   const handleButtonStatus = useCallback(() => {
     setRoomInfo(defaultRoomInfo);
@@ -49,7 +49,7 @@ const AddButton: FC<Props> = ({ onConfirm }) => {
     >
       <Container>
         <div className="fields-box">
-          {Object.entries(roomInfo).map(([fieldName, fieldVal]) => (
+          {Object.entries(roomItem).map(([fieldName, fieldVal]) => (
             <div className="field-box" key={fieldName}>
               <TextField
                 labelFixed
