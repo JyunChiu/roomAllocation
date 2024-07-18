@@ -1,10 +1,11 @@
 enum FieldLabel {
-  adult = "Adult",
-  children = "Children",
+  adult = "Adult(s)",
+  child = "Children",
   roomPrice = "Room Price",
   adultPrice = "Adult Price",
   childPrice = "Child Price",
   capacity = "Capacity",
+  room = "Room",
 }
 interface Sizes {
   XL?: string;
@@ -21,8 +22,10 @@ interface Colors {
   BLUE_1: string;
   BLUE_2: string;
   BLUE_3: string;
+  BLUE_4: string;
   GRAY_1: string;
   GRAY_2: string;
+  GRAY_3: string;
 }
 
 export { FieldLabel };

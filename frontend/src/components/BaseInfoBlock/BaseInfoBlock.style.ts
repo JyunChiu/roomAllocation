@@ -5,7 +5,7 @@ import { BlockContainer } from "src/app/page.style";
 export const Container = styled(BlockContainer)`
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
   width: 40%;
   flex: unset;
   .label {
@@ -29,22 +29,6 @@ export const RoomArea = styled.div`
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  .title-box {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .rooms-box {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    height: 100%;
-    overflow: auto;
-    padding: 0.5rem;
-    &::-webkit-scrollbar {
-      width: ${SCROLL_BAR_SIZE.XS};
-    }
-  }
 `;
 
 export const PriceBar = styled.div`
@@ -54,5 +38,5 @@ export const PriceBar = styled.div`
   padding: 1.2rem 1rem 1rem;
   box-shadow: 0 0 6px 0 #57575740;
   border-radius: ${BORDER_RADIUS.SM};
-  background: ${COLOR.BLUE_3};
+  background: ${COLOR.BLUE_4};
 `;

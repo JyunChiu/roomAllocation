@@ -71,7 +71,7 @@ const BaseInfoBlock: FC = () => {
               label=""
               type="number"
               value={fieldVal}
-              disabled={fieldName === "children" && !guest.adult}
+              disabled={fieldName === "child" && !guest.adult}
               onBlur={handleAdultCountBlur}
               onChange={handleConfigChange}
             />

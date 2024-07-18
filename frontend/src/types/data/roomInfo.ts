@@ -5,4 +5,10 @@ interface RoomInfo {
   capacity: number;
 }
 
-export type { RoomInfo };
+interface Result {
+  adult: number;
+  child: number;
+  price: number;
+}
+
+export type { RoomInfo, Result };

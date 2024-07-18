@@ -6,9 +6,11 @@ export const COLOR: Colors = {
   // dark → light
   BLUE_1: "#276c9e",
   BLUE_2: "#4087bb",
-  BLUE_3: "#dae2ea",
-  GRAY_1: "#949494",
-  GRAY_2: "#CCCCCC",
+  BLUE_3: "#a0d2f4",
+  BLUE_4: "#dae2ea",
+  GRAY_1: "#676767",
+  GRAY_2: "#808080",
+  GRAY_3: "#CCCCCC",
 };
 
 export const BORDER_RADIUS: Sizes = {

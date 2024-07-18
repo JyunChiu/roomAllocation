@@ -14,7 +14,7 @@ export const StyledIconButton = styled(IconButton, {
   "&.MuiIconButton-root": {
     color: COLOR[$iconColor as keyof Colors],
     "&.Mui-disabled": {
-      color: COLOR.GRAY_1,
+      color: COLOR.GRAY_2,
     },
   },
   "& .MuiSvgIcon-root": {

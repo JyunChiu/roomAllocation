@@ -1,6 +1,6 @@
 interface GuestInfo {
   adult: number;
-  children: number;
+  child: number;
 }
 
 export type { GuestInfo };
