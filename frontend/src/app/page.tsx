@@ -84,6 +84,15 @@ const Home: FC = () => {
     setResult(tempResult);
   }, [guest, rooms]);
 
+  const notEnoughCapacity = useMemo(() => {
+    const totalCapacity = rooms.reduce(
+      (acc, val) => acc + (val?.capacity || 0),
+      0
+    );
+    const totalGuest = (guest.adult || 0) + (guest.child || 0);
+    return totalGuest > totalCapacity;
+  }, [rooms, guest]);
+
   const contextValue = useMemo(
     () => ({
       guest,
@@ -92,6 +101,7 @@ const Home: FC = () => {
       setRooms,
       result,
       setResult,
+      notEnoughCapacity,
       getDefaultRoomAllocation,
     }),
     [
@@ -101,6 +111,7 @@ const Home: FC = () => {
       setRooms,
       result,
       setResult,
+      notEnoughCapacity,
       getDefaultRoomAllocation,
     ]
   );

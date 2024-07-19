@@ -4,7 +4,7 @@ import { FONT_SIZE, COLOR, ICON_SIZE } from "src/stylesheet";
 export const RoomCard = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.8rem;
   padding: 1rem 0;
   &:not(:last-child) {
     border-bottom: 1px solid ${COLOR.GRAY_3};

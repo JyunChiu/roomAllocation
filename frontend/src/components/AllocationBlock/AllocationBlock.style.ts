@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FONT_SIZE, COLOR, BORDER_RADIUS, ICON_SIZE } from "src/stylesheet";
+import { FONT_SIZE, COLOR, BORDER_RADIUS } from "src/stylesheet";
 import { BlockContainer } from "src/app/page.style";
 
 export const Container = styled(BlockContainer)`
@@ -12,7 +12,7 @@ export const Container = styled(BlockContainer)`
     bottom: 100%;
     height: 2.5rem;
     left: 0;
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.8rem;
   }
   .sub-title {
     color: ${COLOR.GRAY_2};
