@@ -1,5 +1,4 @@
-import React, { FC, useMemo, useContext, useCallback, useEffect } from "react";
-import { AppContext } from "src/contexts";
+import React, { FC, useMemo, useCallback, memo } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import { FieldLabel } from "types/common";
 import { Result, RoomInfo } from "types/data";
@@ -23,7 +22,9 @@ const RoomAllocation: FC<Props> = ({
 }) => {
   const handlePriceCalculate = useCallback(
     (item: Result): number =>
-      roomPrice + adultPrice * item.adult + childPrice * item.child,
+      !(item.adult + item.child)
+        ? 0
+        : roomPrice + adultPrice * item.adult + childPrice * item.child,
 
     [roomPrice, adultPrice, childPrice]
   );
@@ -44,6 +45,13 @@ const RoomAllocation: FC<Props> = ({
 
   const handleGuestNumberChange = useCallback(
     (name: string, val: string | number) => {
+      if (name === "adult" && !val) {
+        return handleResultChange({
+          adult: 0,
+          child: 0,
+          price: 0,
+        });
+      }
       const updatedRoomInfo = {
         ...data,
         [name]: val,
@@ -69,6 +77,7 @@ const RoomAllocation: FC<Props> = ({
 
   const customInputNumberProps = {
     step: 1,
+    roomNo,
     handleGuestNumberChange,
     handleGuestNumberBlur,
   };
@@ -124,4 +133,4 @@ const RoomAllocation: FC<Props> = ({
   );
 };
 
-export default RoomAllocation;
+export default memo(RoomAllocation);

@@ -1,17 +1,14 @@
-import React, { FC, useContext, useState, useMemo, useCallback } from "react";
+import React, { FC, useContext, useMemo, useCallback } from "react";
 import { AppContext } from "src/contexts";
 import { FieldLabel } from "types/common";
 import { Result } from "types/data";
+import { Button } from "components/Buttons";
 import RoomAllocation from "./RoomAllocation";
 import { Container } from "./AllocationBlock.style";
 
 const AllocationBlock: FC = () => {
-  const { guest, rooms } = useContext(AppContext);
-  const [result, setResult] = useState<Result[]>([
-    { adult: 0, child: 0, price: 0 },
-    { adult: 0, child: 0, price: 0 },
-    { adult: 0, child: 0, price: 0 },
-  ]);
+  const { guest, rooms, result, setResult, getDefaultRoomAllocation } =
+    useContext(AppContext);
 
   const totalPrice = useMemo(
     () => result.reduce((acc, val) => acc + (val?.price || 0), 0),
@@ -40,8 +37,22 @@ const AllocationBlock: FC = () => {
     [setResult, result]
   );
 
+  const disableAllocate = useMemo(() => {
+    const noRoom = !rooms.length;
+    const noGuest = !(guest.adult + guest.child);
+    return noRoom || noGuest;
+  }, [guest, rooms]);
+
   return (
     <Container>
+      <Button
+        className="reset-btn"
+        small
+        onClick={getDefaultRoomAllocation}
+        disabled={disableAllocate}
+      >
+        Recommended Allocation
+      </Button>
       <div className="title-box">
         <span className="label">Guest:</span>
         <span className="value">{guest.adult || 0}</span>

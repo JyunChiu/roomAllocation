@@ -1,15 +1,12 @@
 import React, {
   FC,
   useCallback,
-  useEffect,
   useContext,
-  useRef,
   useState,
   memo,
-  use,
+  useEffect,
 } from "react";
 import { AppContext } from "src/contexts";
-import { RoomInfo } from "types/data";
 import { Button } from "components/Buttons";
 import TextField from "components/TextField";
 import { Container } from "./CustomInputNumber.style";
@@ -33,12 +30,17 @@ const CustomInputNumber: FC<Props> = ({
   min,
   step,
   disabledInput,
+  roomNo,
   handleGuestNumberChange,
   handleGuestNumberBlur,
 }) => {
   const { guest } = useContext(AppContext);
   const [currCount, setCurrCount] = useState<number>(value);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    setCurrCount(value);
+  }, [value]);
 
   const onGuestNumberChange = useCallback(
     (name: string, val: string | number) => {
@@ -93,6 +95,7 @@ const CustomInputNumber: FC<Props> = ({
         －
       </Button>
       <TextField
+        key={`room-${roomNo}--${name}`}
         name={name}
         className="guest-input"
         value={currCount}

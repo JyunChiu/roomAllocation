@@ -6,6 +6,14 @@ export const Container = styled(BlockContainer)`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  position: relative;
+  .reset-btn {
+    position: absolute;
+    bottom: 100%;
+    height: 2.5rem;
+    left: 0;
+    margin: 0 0 0.5rem;
+  }
   .sub-title {
     color: ${COLOR.GRAY_2};
     font-size: ${FONT_SIZE.SM};

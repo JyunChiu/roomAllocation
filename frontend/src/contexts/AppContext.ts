@@ -6,6 +6,9 @@ const AppContext = createContext<IAppContext>({
   setGuest: () => {},
   rooms: [],
   setRooms: () => {},
+  result: [],
+  setResult: () => {},
+  getDefaultRoomAllocation: () => {},
 });
 
 export default AppContext;

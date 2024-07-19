@@ -14,7 +14,8 @@ import {
 } from "./BaseInfoBlock.style";
 
 const BaseInfoBlock: FC = () => {
-  const { guest, setGuest, rooms, setRooms } = useContext(AppContext);
+  const { guest, setGuest, rooms, setRooms, result, setResult } =
+    useContext(AppContext);
 
   const handleConfigChange = useCallback(
     (name: string, val: string | number) => {
@@ -30,21 +31,25 @@ const BaseInfoBlock: FC = () => {
     [setGuest]
   );
 
-  const onDeleteKey = useCallback(
+  const handleRoomDelete = useCallback(
     (index: number) => {
-      const result = [...rooms];
-      result.splice(index, 1);
-      setRooms(result);
+      const tempRooms = [...rooms];
+      tempRooms.splice(index, 1);
+      setRooms(tempRooms);
+
+      const tempResult = [...result];
+      tempResult.splice(index, 1);
+      setResult(tempResult);
     },
-    [rooms, setRooms]
+    [rooms, setRooms, result, setResult]
   );
 
   const handleRoomInfoChange = useCallback(
     (index: number, name: string, val: string | number) => {
-      const result = [...rooms];
-      const updatedRoom = { ...rooms[index], [name]: val };
-      result.splice(index, 1, updatedRoom);
-      setRooms(result);
+      const tempRooms = [...rooms];
+      const updatedRoom = { ...tempRooms[index], [name]: val };
+      tempRooms.splice(index, 1, updatedRoom);
+      setRooms(tempRooms);
     },
     [rooms, setRooms]
   );
@@ -52,8 +57,9 @@ const BaseInfoBlock: FC = () => {
   const handleRoomAdd = useCallback(
     (item: RoomInfo) => {
       setRooms((prev) => [...prev, item]);
+      setResult((prev) => [...prev, { adult: 0, child: 0, price: 0 }]);
     },
-    [setRooms]
+    [setRooms, setResult]
   );
 
   return (
@@ -101,7 +107,7 @@ const BaseInfoBlock: FC = () => {
                   />
                 </div>
               ))}
-              <IconButton onClick={(e): void => onDeleteKey(i)}>
+              <IconButton onClick={(): void => handleRoomDelete(i)}>
                 <Delete />
               </IconButton>
             </PriceBar>
