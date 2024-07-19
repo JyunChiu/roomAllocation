@@ -1,4 +1,5 @@
 import React, { FC, useContext, useCallback } from "react";
+import ErrorIcon from "@mui/icons-material/Error";
 import { AppContext } from "src/contexts";
 import { FieldLabel } from "types/common";
 import { RoomInfo } from "types/data";
@@ -14,8 +15,15 @@ import {
 } from "./BaseInfoBlock.style";
 
 const BaseInfoBlock: FC = () => {
-  const { guest, setGuest, rooms, setRooms, result, setResult } =
-    useContext(AppContext);
+  const {
+    guest,
+    setGuest,
+    rooms,
+    setRooms,
+    result,
+    setResult,
+    notEnoughCapacity,
+  } = useContext(AppContext);
 
   const handleConfigChange = useCallback(
     (name: string, val: string | number) => {
@@ -87,6 +95,12 @@ const BaseInfoBlock: FC = () => {
         <div className="title-box">
           <div className="label">Rooms</div>
           <AddButton onConfirm={handleRoomAdd} />
+          {notEnoughCapacity && (
+            <div className="error-message">
+              <ErrorIcon />
+              Capacity is less than the number of guests
+            </div>
+          )}
         </div>
 
         <div className="rooms-box">

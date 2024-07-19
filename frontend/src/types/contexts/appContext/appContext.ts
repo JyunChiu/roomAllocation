@@ -8,6 +8,7 @@ interface IAppContext {
   setRooms: Dispatch<SetStateAction<RoomInfo[]>>;
   result: Result[];
   setResult: Dispatch<SetStateAction<Result[]>>;
+  notEnoughCapacity: boolean;
   getDefaultRoomAllocation: () => void;
 }
 

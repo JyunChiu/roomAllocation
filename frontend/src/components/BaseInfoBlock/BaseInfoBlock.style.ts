@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SCROLL_BAR_SIZE, COLOR, BORDER_RADIUS } from "src/stylesheet";
+import { COLOR, BORDER_RADIUS, FONT_SIZE, ICON_SIZE } from "src/stylesheet";
 import { BlockContainer } from "src/app/page.style";
 
 export const Container = styled(BlockContainer)`
@@ -29,6 +29,19 @@ export const RoomArea = styled.div`
   flex-direction: column;
   flex: 1;
   min-height: 0;
+  .title-box {
+    .error-message {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      margin-left: auto;
+      font-size: ${FONT_SIZE.SM};
+      color: ${COLOR.RED};
+      .MuiSvgIcon-root {
+        font-size: ${ICON_SIZE.MD};
+      }
+    }
+  }
 `;
 
 export const PriceBar = styled.div`

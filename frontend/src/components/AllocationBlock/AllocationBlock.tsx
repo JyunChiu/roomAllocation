@@ -7,8 +7,14 @@ import RoomAllocation from "./RoomAllocation";
 import { Container } from "./AllocationBlock.style";
 
 const AllocationBlock: FC = () => {
-  const { guest, rooms, result, setResult, getDefaultRoomAllocation } =
-    useContext(AppContext);
+  const {
+    guest,
+    rooms,
+    result,
+    setResult,
+    getDefaultRoomAllocation,
+    notEnoughCapacity,
+  } = useContext(AppContext);
 
   const totalPrice = useMemo(
     () => result.reduce((acc, val) => acc + (val?.price || 0), 0),
@@ -40,8 +46,8 @@ const AllocationBlock: FC = () => {
   const disableAllocate = useMemo(() => {
     const noRoom = !rooms.length;
     const noGuest = !(guest.adult + guest.child);
-    return noRoom || noGuest;
-  }, [guest, rooms]);
+    return noRoom || noGuest || notEnoughCapacity;
+  }, [guest, rooms, notEnoughCapacity]);
 
   return (
     <Container>

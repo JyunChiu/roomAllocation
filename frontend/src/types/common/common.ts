@@ -21,6 +21,7 @@ interface Sizes {
 interface Colors {
   WHITE: string;
   BLACK: string;
+  RED: string;
   BLUE_1: string;
   BLUE_2: string;
   BLUE_3: string;

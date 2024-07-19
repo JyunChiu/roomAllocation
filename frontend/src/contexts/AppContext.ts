@@ -8,6 +8,7 @@ const AppContext = createContext<IAppContext>({
   setRooms: () => {},
   result: [],
   setResult: () => {},
+  notEnoughCapacity: false,
   getDefaultRoomAllocation: () => {},
 });
 

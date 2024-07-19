@@ -3,6 +3,7 @@ import { Colors, Sizes } from "types/common";
 export const COLOR: Colors = {
   WHITE: "#f9f9f9",
   BLACK: "#333333",
+  RED: "#ea6d6d",
   // dark → light
   BLUE_1: "#276c9e",
   BLUE_2: "#4087bb",
