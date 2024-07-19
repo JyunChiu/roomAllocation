@@ -8,13 +8,13 @@ import { Container } from "./AllocationBlock.style";
 const AllocationBlock: FC = () => {
   const { guest, rooms } = useContext(AppContext);
   const [result, setResult] = useState<Result[]>([
-    { adult: 1, child: 2, price: 0 },
-    { adult: 0, child: 3, price: 0 },
-    { adult: 4, child: 0, price: 0 },
+    { adult: 0, child: 0, price: 0 },
+    { adult: 0, child: 0, price: 0 },
+    { adult: 0, child: 0, price: 0 },
   ]);
 
   const totalPrice = useMemo(
-    () => result.reduce((acc, val) => acc + val.price, 0),
+    () => result.reduce((acc, val) => acc + (val?.price || 0), 0),
     [result]
   );
 
@@ -32,15 +32,14 @@ const AllocationBlock: FC = () => {
 
   const handleResultChange = useCallback(
     (index: number, updatedRoom: Result) => {
-      console.group("index :::::", index);
-      console.group("updatedRoom :::::", updatedRoom);
-      const updatedResult = [...result];
-      updatedResult.splice(index, 1, updatedRoom);
-      setResult(updatedResult);
-      console.log("result :::::", updatedResult);
-      console.groupEnd();
+      setResult((prev) => {
+        const updatedResult = [...prev];
+        updatedResult.splice(index, 1, updatedRoom);
+        console.log("result :::::", updatedResult);
+        return updatedResult;
+      });
     },
-    [result, setResult]
+    [setResult]
   );
 
   return (
@@ -76,7 +75,9 @@ const AllocationBlock: FC = () => {
             data={item}
             roomInfo={rooms[i]}
             unassigned={unassigned}
-            onChange={(updatedResult) => handleResultChange(i, updatedResult)}
+            handleResultChange={(updatedResult) =>
+              handleResultChange(i, updatedResult)
+            }
           />
         ))}
       </div>

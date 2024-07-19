@@ -7,7 +7,7 @@ import { GuestInfo, RoomInfo } from "types/data";
 import { Container } from "./page.style";
 
 const Home: FC = () => {
-  const [guest, setGuest] = useState<GuestInfo>({ adult: 0, child: 0 });
+  const [guest, setGuest] = useState<GuestInfo>({ adult: 10, child: 10 });
   const [rooms, setRooms] = useState<RoomInfo[]>([
     { roomPrice: 1000, adultPrice: 200, childPrice: 100, capacity: 4 },
     { roomPrice: 0, adultPrice: 500, childPrice: 500, capacity: 4 },

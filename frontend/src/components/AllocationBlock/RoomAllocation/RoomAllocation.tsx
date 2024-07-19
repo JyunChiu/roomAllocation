@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useContext, useCallback } from "react";
+import React, { FC, useMemo, useContext, useCallback, useEffect } from "react";
 import { AppContext } from "src/contexts";
 import PersonIcon from "@mui/icons-material/Person";
 import { FieldLabel } from "types/common";
@@ -11,7 +11,7 @@ interface Props {
   roomInfo: RoomInfo;
   data: Result;
   unassigned: Result;
-  onChange: (updatedResult: Result) => void;
+  handleResultChange: (updatedResult: Result) => void;
 }
 
 const RoomAllocation: FC<Props> = ({
@@ -19,15 +19,8 @@ const RoomAllocation: FC<Props> = ({
   roomNo,
   roomInfo: { roomPrice, adultPrice, childPrice, capacity },
   unassigned,
-  onChange,
+  handleResultChange,
 }) => {
-  const { guest } = useContext(AppContext);
-
-  const numberOfGuest = useMemo(
-    () => (data.adult || 0) + (data.child || 0),
-    [data]
-  );
-
   const handlePriceCalculate = useCallback(
     (item: Result): number =>
       roomPrice + adultPrice * item.adult + childPrice * item.child,
@@ -35,21 +28,49 @@ const RoomAllocation: FC<Props> = ({
     [roomPrice, adultPrice, childPrice]
   );
 
-  const onGuestNumberChange = useCallback(
+  const numberOfGuest = useMemo(
+    () => (data.adult || 0) + (data.child || 0),
+    [data]
+  );
+
+  const getMaxCount = useCallback(
+    (self: "adult" | "child", other: "adult" | "child"): number => {
+      if (unassigned[self] === 0) return 0;
+      if (self === "child" && !data[other]) return 0;
+      return Math.min(capacity, capacity - data[other]);
+    },
+    [data, capacity, unassigned]
+  );
+
+  const handleGuestNumberChange = useCallback(
     (name: string, val: string | number) => {
       const updatedRoomInfo = {
         ...data,
         [name]: val,
         price: handlePriceCalculate({ ...data, [name]: val }),
       };
-      onChange(updatedRoomInfo);
+      handleResultChange(updatedRoomInfo);
     },
-    [data, onChange, handlePriceCalculate]
+    [data, handleResultChange, handlePriceCalculate]
+  );
+
+  const handleGuestNumberBlur = useCallback(
+    (name: string, val?: string | number) => {
+      if (name === "adult" && !val) {
+        handleResultChange({
+          adult: 0,
+          child: 0,
+          price: 0,
+        });
+      }
+    },
+    [handleResultChange]
   );
 
   const customInputNumberProps = {
     step: 1,
-    onGuestNumberChange,
+    handleGuestNumberChange,
+    handleGuestNumberBlur,
   };
 
   return (
@@ -77,9 +98,8 @@ const RoomAllocation: FC<Props> = ({
             <CustomInputNumber
               {...customInputNumberProps}
               name="adult"
-              disabled={guest.adult === 0}
               value={data.adult}
-              max={Math.min(unassigned.adult, capacity)}
+              max={getMaxCount("adult", "child")}
               min={0}
             />
           </div>
@@ -92,10 +112,10 @@ const RoomAllocation: FC<Props> = ({
             <CustomInputNumber
               {...customInputNumberProps}
               name="child"
-              disabled={guest.child === 0}
               value={data.child}
-              max={Math.min(unassigned.child, capacity)}
+              max={getMaxCount("child", "adult")}
               min={0}
+              disabledInput={!data.adult}
             />
           </div>
         </div>

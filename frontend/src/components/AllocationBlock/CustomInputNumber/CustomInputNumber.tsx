@@ -1,32 +1,107 @@
-import React, { FC, useCallback, memo } from "react";
+import React, {
+  FC,
+  useCallback,
+  useEffect,
+  useContext,
+  useRef,
+  useState,
+  memo,
+} from "react";
+import { AppContext } from "src/contexts";
 import { RoomInfo } from "types/data";
 import { Button } from "components/Buttons";
 import TextField from "components/TextField";
 import { Container } from "./CustomInputNumber.style";
 
 interface Props {
-  name: string;
+  name: "adult" | "child";
   value: number;
-  disabled: boolean;
+  disabledInput?: boolean;
   step: number;
   max: number;
   min: number;
-
-  onGuestNumberChange: (name: string, val: string | number) => void;
+  handleGuestNumberChange: (name: string, val: string | number) => void;
+  handleGuestNumberBlur: (name: string, val?: string | number) => void;
 }
 
 const CustomInputNumber: FC<Props> = ({
   name,
   value,
-  disabled,
   max,
   min,
-  onGuestNumberChange,
+  step,
+  disabledInput,
+  handleGuestNumberChange,
+  handleGuestNumberBlur,
 }) => {
-  console.log("max", name, max);
+  const { guest } = useContext(AppContext);
+
+  const timer = useRef(null);
+
+  const handleIncrement = () => {
+    if (value < max) {
+      timer.current = setInterval(
+        () => handleGuestNumberChange(name, value + step),
+        500
+      );
+    }
+  };
+
+  const handleDecrement = () => {
+    if (value > min) {
+      timer.current = setInterval(
+        () => handleGuestNumberChange(name, value - step),
+        500
+      );
+    }
+  };
+
+  const handleClearInterval = () => {
+    clearInterval(timer.current);
+  };
+
+  // const handleMouseDown = (operation: "increment" | "decrement") => {
+  //   // Initial operation
+  //   operation === "increment" ? handleIncrement() : handleDecrement();
+
+  //   // Set up interval for continuous operation
+  //   holdTimeoutRef.current = setTimeout(() => {
+  //     intervalRef.current = setInterval(() => {
+  //       operation === "increment" ? handleIncrement() : handleDecrement();
+  //     }, 100);
+  //   }, 500);
+  // };
+
+  // const handleMouseUp = () => {
+  //   if (holdTimeoutRef.current) {
+  //     clearTimeout(holdTimeoutRef.current);
+  //     holdTimeoutRef.current = null;
+  //   }
+  //   if (intervalRef.current) {
+  //     clearInterval(intervalRef.current);
+  //     intervalRef.current = null;
+  //   }
+  // };
+
+  const onGuestNumberChange = useCallback(
+    (name: string, val: string | number) => {
+      if ((val as number) > max || (val as number) < min) return;
+      handleGuestNumberChange(name, val);
+    },
+    [max, min, handleGuestNumberChange]
+  );
+
   return (
     <Container>
-      <Button className="button" outlined disabled={value === min || disabled}>
+      <Button
+        className="button"
+        outlined
+        disabled={value <= min || !guest[name]}
+        // onClick={handleDecrement}
+        onMouseDown={handleDecrement}
+        onMouseUp={handleClearInterval}
+        onMouseLeave={handleClearInterval}
+      >
         －
       </Button>
       <TextField
@@ -35,10 +110,19 @@ const CustomInputNumber: FC<Props> = ({
         value={value}
         label=""
         type="number"
-        disabled={disabled}
+        disabled={!guest[name] || disabledInput}
         onChange={onGuestNumberChange}
+        onBlur={handleGuestNumberBlur}
       />
-      <Button className="button" outlined disabled={value === max || disabled}>
+      <Button
+        className="button"
+        outlined
+        disabled={value >= max || !guest[name]}
+        // onClick={handleIncrement}
+        onMouseDown={handleIncrement}
+        onMouseUp={handleClearInterval}
+        onMouseLeave={handleClearInterval}
+      >
         ＋
       </Button>
     </Container>

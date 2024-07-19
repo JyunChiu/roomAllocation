@@ -25,7 +25,7 @@ const BaseInfoBlock: FC = () => {
 
   const handleAdultCountBlur = useCallback(
     (_: string, val?: string | number) => {
-      if (!val) setGuest((prev) => ({ ...prev, children: 0 }));
+      if (!val) setGuest({ adult: 0, child: 0 });
     },
     [setGuest]
   );
@@ -91,6 +91,7 @@ const BaseInfoBlock: FC = () => {
                 <div className="field-box" key={fieldName}>
                   <TextField
                     labelFixed
+                    type="number"
                     name={fieldName}
                     label={FieldLabel[fieldName as keyof typeof FieldLabel]}
                     value={fieldVal}
