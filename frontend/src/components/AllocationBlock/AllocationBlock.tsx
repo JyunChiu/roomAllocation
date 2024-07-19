@@ -32,14 +32,12 @@ const AllocationBlock: FC = () => {
 
   const handleResultChange = useCallback(
     (index: number, updatedRoom: Result) => {
-      setResult((prev) => {
-        const updatedResult = [...prev];
-        updatedResult.splice(index, 1, updatedRoom);
-        console.log("result :::::", updatedResult);
-        return updatedResult;
-      });
+      const updatedResult = [...result];
+      updatedResult.splice(index, 1, updatedRoom);
+      console.log("result :::::", updatedResult);
+      setResult(updatedResult);
     },
-    [setResult]
+    [setResult, result]
   );
 
   return (
