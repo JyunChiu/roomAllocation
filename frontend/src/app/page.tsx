@@ -36,11 +36,14 @@ const Home: FC = () => {
       price: 0,
     }));
 
-    roomIndexes.forEach(({ index }, i) => {
+    roomIndexes.forEach(({ index }) => {
       const room = rooms[index];
 
       let assignedAdults = 0;
       let assignedChildren = 0;
+
+      // skip the room which capacity is 0
+      if (!room.capacity) return;
 
       // at least one adult when there is a child in a room
       if (remainingChildren > 0 && remainingAdults > 0) {
@@ -78,7 +81,6 @@ const Home: FC = () => {
         child: assignedChildren,
         price: totalCost,
       };
-      console.groupEnd();
     });
 
     setResult(tempResult);
