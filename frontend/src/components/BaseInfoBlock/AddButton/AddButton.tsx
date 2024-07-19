@@ -53,7 +53,6 @@ const AddButton: FC<Props> = ({ onConfirm }) => {
             <div className="field-box" key={fieldName}>
               <TextField
                 labelFixed
-                type="number"
                 name={fieldName}
                 label={FieldLabel[fieldName as keyof typeof FieldLabel]}
                 value={fieldVal}

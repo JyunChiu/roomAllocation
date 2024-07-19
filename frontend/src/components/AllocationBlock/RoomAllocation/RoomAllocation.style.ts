@@ -16,14 +16,14 @@ export const RoomCard = styled.div`
     .label {
       font-weight: 600;
       color: ${COLOR.BLUE_1};
-      font-size: ${FONT_SIZE.LG};
+      font-size: ${FONT_SIZE.MD};
     }
     .icon-box {
       display: flex;
       align-items: center;
       margin: 0 0.2rem 0 0.5rem;
       .MuiSvgIcon-root {
-        font-size: ${ICON_SIZE.LG};
+        font-size: ${ICON_SIZE.MD};
       }
     }
     .number-of-guest {
@@ -43,12 +43,9 @@ export const RoomCard = styled.div`
       .title-zone {
         display: flex;
         flex-direction: column;
-        gap: 0.2rem;
+        gap: 0.5rem;
         font-weight: 600;
-        .title {
-        }
-      }
-      .input-zone {
+        font-size: ${FONT_SIZE.REGULAR};
       }
     }
   }

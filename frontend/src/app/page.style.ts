@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const BlockContainer = styled.div`
   flex: 1;
   border-radius: ${BORDER_RADIUS.SM};
-  padding: 1rem;
+  padding: 1.5rem;
   box-shadow: 6px 6px 10px #d5d6d7, -8px -8px 20px #f6fcfdb0,
     inset 5px 3px 6px #f6fcfdbf, inset 0px 0px 6px #d5d6d7;
   .title-box {
@@ -24,7 +24,7 @@ export const BlockContainer = styled.div`
   .rooms-box {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.2rem;
     height: 100%;
     overflow: auto;
     padding: 0.5rem;

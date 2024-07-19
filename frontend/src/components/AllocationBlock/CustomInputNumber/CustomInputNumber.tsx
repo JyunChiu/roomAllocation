@@ -100,7 +100,6 @@ const CustomInputNumber: FC<Props> = ({
         className="guest-input"
         value={currCount}
         label=""
-        type="number"
         disabled={!guest[name] || disabledInput}
         onChange={onGuestNumberChange}
         onBlur={handleGuestNumberBlur}

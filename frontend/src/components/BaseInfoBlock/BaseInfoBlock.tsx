@@ -82,7 +82,6 @@ const BaseInfoBlock: FC = () => {
               labelFixed
               name={fieldName}
               label=""
-              type="number"
               value={fieldVal}
               disabled={fieldName === "child" && !guest.adult}
               onBlur={handleAdultCountBlur}
@@ -111,7 +110,6 @@ const BaseInfoBlock: FC = () => {
                 <div className="field-box" key={fieldName}>
                   <TextField
                     labelFixed
-                    type="number"
                     name={fieldName}
                     label={FieldLabel[fieldName as keyof typeof FieldLabel]}
                     value={fieldVal}

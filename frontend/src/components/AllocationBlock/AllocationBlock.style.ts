@@ -15,18 +15,20 @@ export const Container = styled(BlockContainer)`
     margin: 0 0 0.8rem;
   }
   .sub-title {
+    font-weight: 400;
     color: ${COLOR.GRAY_2};
     font-size: ${FONT_SIZE.SM};
   }
   .title-box {
     .label {
-      font-size: ${FONT_SIZE.LG};
+      font-weight: 600;
+      font-size: ${FONT_SIZE.MD};
       color: ${COLOR.BLACK};
     }
     .value {
-      font-weight: 600;
+      font-weight: 800;
       color: ${COLOR.BLUE_1};
-      font-size: ${FONT_SIZE.XL};
+      font-size: ${FONT_SIZE.LG};
     }
     .sub-title {
       display: flex;
@@ -52,7 +54,7 @@ export const Container = styled(BlockContainer)`
     }
   }
   .rooms-box {
-    gap: 0;
+    gap: 1rem;
     padding: 0 1rem;
   }
 `;

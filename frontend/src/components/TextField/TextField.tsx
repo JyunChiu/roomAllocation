@@ -42,7 +42,7 @@ const CustomizedTextField: FC<Props> = ({
   readOnly,
   hasIcon,
   Icon = <Search />,
-  type = "text",
+  type = "number",
   fullWidth = false,
   size = "small",
   helperText = "",

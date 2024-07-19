@@ -103,30 +103,26 @@ const RoomAllocation: FC<Props> = ({
             <span className="title">{FieldLabel.adult}</span>
             <span className="sub-title">Age 20+</span>
           </div>
-          <div className="input-zone">
-            <CustomInputNumber
-              {...customInputNumberProps}
-              name="adult"
-              value={data.adult}
-              max={getMaxCount("adult", "child")}
-              min={0}
-            />
-          </div>
+          <CustomInputNumber
+            {...customInputNumberProps}
+            name="adult"
+            value={data.adult}
+            max={getMaxCount("adult", "child")}
+            min={0}
+          />
         </div>
         <div className="guest-box">
           <div className="title-zone">
             <span className="title">{FieldLabel.child}</span>
           </div>
-          <div className="input-zone">
-            <CustomInputNumber
-              {...customInputNumberProps}
-              name="child"
-              value={data.child}
-              max={getMaxCount("child", "adult")}
-              min={0}
-              disabledInput={!data.adult}
-            />
-          </div>
+          <CustomInputNumber
+            {...customInputNumberProps}
+            name="child"
+            value={data.child}
+            max={getMaxCount("child", "adult")}
+            min={0}
+            disabledInput={!data.adult}
+          />
         </div>
       </div>
     </RoomCard>
