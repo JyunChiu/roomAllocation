@@ -39,6 +39,18 @@ const BaseInfoBlock: FC = () => {
     [setGuest]
   );
 
+  const handleRoomInfoBlur = useCallback(
+    (index: number, name: string, val?: string | number) => {
+      if (!val) {
+        const tempRooms = [...rooms];
+        const updatedRoom = { ...tempRooms[index], [name]: 0 };
+        tempRooms.splice(index, 1, updatedRoom);
+        setRooms(tempRooms);
+      }
+    },
+    [setRooms, rooms]
+  );
+
   const handleRoomDelete = useCallback(
     (index: number) => {
       const tempRooms = [...rooms];
@@ -113,6 +125,9 @@ const BaseInfoBlock: FC = () => {
                     name={fieldName}
                     label={FieldLabel[fieldName as keyof typeof FieldLabel]}
                     value={fieldVal}
+                    onBlur={(name: string, val?: string | number) =>
+                      handleRoomInfoBlur(i, name, val)
+                    }
                     onChange={(name: string, val: string | number) =>
                       handleRoomInfoChange(i, name, val)
                     }
