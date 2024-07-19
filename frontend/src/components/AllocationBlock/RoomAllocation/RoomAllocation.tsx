@@ -65,11 +65,7 @@ const RoomAllocation: FC<Props> = ({
   const handleGuestNumberBlur = useCallback(
     (name: string, val?: string | number) => {
       if (name === "adult" && !val) {
-        handleResultChange({
-          adult: 0,
-          child: 0,
-          price: 0,
-        });
+        handleResultChange({ adult: 0, child: 0, price: 0 });
       }
     },
     [handleResultChange]

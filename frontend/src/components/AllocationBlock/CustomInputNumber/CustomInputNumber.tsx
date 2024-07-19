@@ -51,6 +51,16 @@ const CustomInputNumber: FC<Props> = ({
     [max, min, handleGuestNumberChange, setCurrCount]
   );
 
+  const onGuestNumberBlur = useCallback(
+    (name: string, val?: string | number) => {
+      if (!val) {
+        handleGuestNumberBlur(name, 0);
+        setCurrCount(0);
+      }
+    },
+    [handleGuestNumberBlur]
+  );
+
   const modifyNumber = useCallback(
     (delta: number) => {
       setCurrCount((prev) => {
@@ -85,7 +95,6 @@ const CustomInputNumber: FC<Props> = ({
         className="button"
         outlined
         disabled={value <= min || !guest[name]}
-        // onClick={() => startChange(-step)}
         onMouseDown={() => startChange(-step)}
         onMouseUp={stopChange}
         onMouseLeave={stopChange}
@@ -102,13 +111,12 @@ const CustomInputNumber: FC<Props> = ({
         label=""
         disabled={!guest[name] || disabledInput}
         onChange={onGuestNumberChange}
-        onBlur={handleGuestNumberBlur}
+        onBlur={onGuestNumberBlur}
       />
       <Button
         className="button"
         outlined
         disabled={value >= max || !guest[name]}
-        // onClick={() => startChange(step)}
         onMouseDown={() => startChange(step)}
         onMouseUp={stopChange}
         onMouseLeave={stopChange}
